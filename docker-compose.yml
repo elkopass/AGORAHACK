@@ -1,1 +1,21 @@
 version: '3'
+
+services:
+  postgres:
+    container_name: agora_postgres
+    image: postgres
+    env_file: .env
+    volumes:
+       - postgres:/data/postgres
+    ports:
+      - "54321:5432"
+    networks:
+      - default
+    restart: always
+    
+networks:
+  default:
+
+volumes:
+    postgres:
+ 
