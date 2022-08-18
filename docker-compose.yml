@@ -17,5 +17,5 @@ networks:
   default:
 
 volumes:
-    postgres:
+  postgres:
  
