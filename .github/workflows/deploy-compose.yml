@@ -19,7 +19,7 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            cd /home/${{ secrets.SSH_USER }}/AGORAHACK
+            cd /home/${{ secrets.SSH_USER }}/services/AGORAHACK
             git fetch --all
             git reset --hard origin/main
             docker-compose up --build -d
