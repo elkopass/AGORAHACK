@@ -4,6 +4,7 @@ services:
   gateway:
     container_name: agora_gateway
     build: gateway/
+    env_file: .env
     ports:
       - "5051:5000"
     networks:
