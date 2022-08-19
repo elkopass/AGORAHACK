@@ -11,10 +11,8 @@ RABBITMQ_PASSWORD = os.environ.get("RABBITMQ_PASSWORD")
 ROUTING_KEY = 'hello'
 
 credentials = pika.PlainCredentials(RABBITMQ_USER, RABBITMQ_PASSWORD)
-connection = pika.ConnectionParameters('somnoynadno.ru',
-                                       56721,
-                                       '/',
-                                       credentials)
+parameters = pika.ConnectionParameters('somnoynadno.ru', 56721, '/', credentials)                        
+connection = pika.BlockingConnection(parameters)
 
 channel = connection.channel()
 channel.queue_declare(queue=ROUTING_KEY)
