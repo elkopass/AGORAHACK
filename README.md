@@ -28,7 +28,7 @@ RABBITMQ_NODE_PORT_NUMBER=56721
 RABBITMQ_REMOTE_HOST=agora_rabbitmq
 ```
 
-2. Поднимаем все сервисы командой ` $ docker-compose up --build -d`
+2. Поднимаем все сервисы командой ` $ sudo docker-compose up --build -d`
 
 ### Из исходников
 
