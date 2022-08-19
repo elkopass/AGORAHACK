@@ -1,9 +1,9 @@
 version: '3'
 
 services:
-  backend:
-    container_name: agora_backend
-    build: src/
+  gateway:
+    container_name: agora_gateway
+    build: gateway/
     ports:
       - "5051:5000"
     networks:
@@ -21,6 +21,17 @@ services:
     networks:
       - default
     restart: always
+  
+  rabbitmq:
+    container_name: agora_rabbitmq
+    image: 'bitnami/rabbitmq:latest'
+    env_file: .env
+    ports:
+      - "56721:5672"
+    networks:
+      - default
+    restart: always
+ 
     
 networks:
   default:
