@@ -1,16 +1,33 @@
 #!/usr/bin/env python
-import pika
 import os
+import time
+
+import pika
+
 
 RABBITMQ_USER = os.environ.get("RABBITMQ_USERNAME")
+RABBITMQ_PASSWORD = os.environ.get("RABBITMQ_PASSWORD")
 
-credentials = pika.PlainCredentials('guest', 'guest')
-connection = pika.BlockingConnection(
-        pika.ConnectionParameters(host='somnoynadno.ru'))
+ROUTING_KEY = 'hello'
+
+credentials = pika.PlainCredentials(RABBITMQ_USER, RABBITMQ_PASSWORD)
+connection = pika.ConnectionParameters('somnoynadno.ru',
+                                       56721,
+                                       '/',
+                                       credentials)
+
 channel = connection.channel()
+channel.queue_declare(queue=ROUTING_KEY)
 
-channel.queue_declare(queue='hello')
-
-channel.basic_publish(exchange='', routing_key='hello', body='Hello World!')
-print(" [x] Sent 'Hello World!'")
-connection.close()
+def publish_forever():
+    i = 0
+    while True:
+        message = 'Hello World' + str(i)
+        channel.basic_publish(exchange='', routing_key=ROUTING_KEY, body=message)
+        
+        print(f" [x] {message}")
+        i += 1
+        
+        sleep(5)
+        
+    connection.close()
