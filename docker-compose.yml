@@ -41,7 +41,7 @@ services:
     env_file: .env
     ports:
       - "15672:15672"
-      - "56721:5672"
+      - "56721:56721"
     networks:
       - default
     restart: always
