@@ -3,13 +3,15 @@ import pika, sys, os
 
 RABBITMQ_USER = os.environ.get("RABBITMQ_USERNAME")
 RABBITMQ_PASSWORD = os.environ.get("RABBITMQ_PASSWORD")
+RABBITMQ_PORT = int(os.environ.get("RABBITMQ_NODE_PORT_NUMBER", 5672))
+RABBITMQ_HOST = os.environ.get("RABBITMQ_NODE_PORT_NUMBER", "localhost")
 
 ROUTING_KEY = 'hello'
 
 
 def main():
     credentials = pika.PlainCredentials(RABBITMQ_USER, RABBITMQ_PASSWORD)
-    parameters = pika.ConnectionParameters('somnoynadno.ru', 56721, '/', credentials)     
+    parameters = pika.ConnectionParameters(RABBITMQ_HOST, RABBITMQ_PORT, '/', credentials)     
     connection = pika.BlockingConnection(parameters)
     
     channel = connection.channel()
