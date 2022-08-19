@@ -26,6 +26,6 @@ def publish_forever():
         print(f" [x] {message}")
         i += 1
         
-        sleep(5)
+        time.sleep(5)
         
     connection.close()
