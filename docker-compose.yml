@@ -1,9 +1,9 @@
 version: '3'
 
 services:
-  backend:
-    container_name: agora_backend
-    build: src/
+  gateway:
+    container_name: agora_gateway
+    build: gateway/
     ports:
       - "5051:5000"
     networks:
