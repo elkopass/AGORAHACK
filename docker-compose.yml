@@ -9,7 +9,18 @@ services:
     networks:
       - default
     restart: always
-    
+  
+  marketplace:
+    container_name: agora_django
+    build: 
+      context: AGORA_Django/
+      dockerfile: Dockerfile
+    ports:
+      - "8001:8001"
+    networks:
+      - default
+    restart: always
+
   postgres:
     container_name: agora_postgres
     image: postgres
@@ -31,7 +42,7 @@ services:
     networks:
       - default
     restart: always
- 
+  
     
 networks:
   default:
