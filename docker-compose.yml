@@ -6,10 +6,12 @@ services:
     build: gateway/
     env_file: .env
     ports:
-      - "5051:5000"
+      - "5001:5000"
     networks:
       - default
     restart: always
+    depends_on:
+      - rabbitmq
   
   marketplace:
     container_name: agora_marketplace
@@ -40,8 +42,10 @@ services:
     image: 'bitnami/rabbitmq:latest'
     env_file: .env
     ports:
-      - "15672:15672"
-      - "56721:56721"
+      # HTTP management UI
+      - "15672:15672"            
+      # AMQP protocol port
+      - "56721:5672" 
     networks:
       - default
     restart: always
