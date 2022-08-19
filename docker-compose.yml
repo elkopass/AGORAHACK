@@ -16,6 +16,7 @@ services:
     build: 
       context: AGORA_Django/
       dockerfile: Dockerfile
+    env_file: .env
     ports:
       - "8001:8001"
     networks:
@@ -39,6 +40,7 @@ services:
     image: 'bitnami/rabbitmq:latest'
     env_file: .env
     ports:
+      - "15672:15672"
       - "56721:5672"
     networks:
       - default
