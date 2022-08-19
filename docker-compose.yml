@@ -6,7 +6,7 @@ services:
     build: gateway/
     env_file: .env
     ports:
-      - "5051:5000"
+      - "5001:5000"
     networks:
       - default
     restart: always
