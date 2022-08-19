@@ -12,9 +12,9 @@ services:
     restart: always
   
   marketplace:
-    container_name: agora_django
+    container_name: agora_marketplace
     build: 
-      context: AGORA_Django/
+      context: marketplace
       dockerfile: Dockerfile
     env_file: .env
     ports:
