@@ -11,7 +11,7 @@ RABBITMQ_PORT = int(os.environ.get("RABBITMQ_NODE_PORT_NUMBER", "5672"))
 RABBITMQ_HOST = os.environ.get("RABBITMQ_REMOTE_HOST", "localhost")
 
 # Check env 
-print(RABBITMQ_USER, RABBITMQ_PASSWORD, RABBITMQ_PORT, RABBITMQ_HOST)
+# print(RABBITMQ_USER, RABBITMQ_PASSWORD, RABBITMQ_PORT, RABBITMQ_HOST)
 
 
 ROUTING_KEY = 'hello'
@@ -29,7 +29,7 @@ def publish_forever():
         message = 'Hello World' + str(i)
         channel.basic_publish(exchange='', routing_key=ROUTING_KEY, body=message)
         
-        print(f" [x] {message}")
+        print(f" [x] {message}", flush=True)
         i += 1
         
         time.sleep(5)

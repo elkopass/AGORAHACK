@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -122,3 +122,20 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+RABBITMQ_USER = os.environ.get("RABBITMQ_USERNAME")
+RABBITMQ_PASSWORD = os.environ.get("RABBITMQ_PASSWORD")
+RABBITMQ_PORT = int(os.environ.get("RABBITMQ_NODE_PORT_NUMBER", "5672"))
+RABBITMQ_HOST = os.environ.get("RABBITMQ_REMOTE_HOST", "localhost")
+
+if RABBITMQ_HOST is None:
+    RABBITMQ_HOST = "localhost"
+if RABBITMQ_PORT is None:
+    RABBITMQ_PORT = '5672'
+if RABBITMQ_PASSWORD is None:
+    RABBITMQ_PASSWORD = 'password'
+if RABBITMQ_USER is None:
+    RABBITMQ_USER = 'user'
+
+CELERY_BROKER_URL = f"amqp://{RABBITMQ_USER}:{RABBITMQ_PASSWORD}@{RABBITMQ_HOST}:{RABBITMQ_PORT}"
