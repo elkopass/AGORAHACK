@@ -45,7 +45,7 @@ services:
       # HTTP management UI
       - "15672:15672"            
       # AMQP protocol port
-      - "56721:5672" 
+      - "56721:56721" 
     networks:
       - default
     restart: always
