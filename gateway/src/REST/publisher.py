@@ -17,15 +17,6 @@ connection = pika.BlockingConnection(parameters)
 channel = connection.channel()
 channel.queue_declare(queue=ROUTING_KEY)
 
-def publish_forever():
-    i = 0
-    while True:
-        message = 'Hello World' + str(i)
-        channel.basic_publish(exchange='', routing_key=ROUTING_KEY, body=message)
-        
-        print(f" [x] {message}")
-        i += 1
-        
-        time.sleep(5)
-        
+def publish_forever(data):
+    channel.basic_publish(exchange='', routing_key=ROUTING_KEY, body=data)
     connection.close()
