@@ -8,7 +8,7 @@ import pika
 RABBITMQ_USER = os.environ.get("RABBITMQ_USERNAME", "user")
 RABBITMQ_PASSWORD = os.environ.get("RABBITMQ_PASSWORD", "bitnami")
 RABBITMQ_PORT = int(os.environ.get("RABBITMQ_NODE_PORT_NUMBER", 56721))
-RABBITMQ_HOST = os.environ.get("RABBITMQ_NODE_HOST_NUMBER", "localhost")
+RABBITMQ_HOST = os.environ.get("RABBITMQ_REMOTE_HOST", "localhost")
 
 # Check env 
 print(RABBITMQ_USER, RABBITMQ_PASSWORD, RABBITMQ_PORT, RABBITMQ_HOST)
