@@ -1,13 +1,5 @@
-# from fastapi import FastAPI
-
-# from api.file import router
-
-# app = FastAPI()
-
-# app.include_router(router)
-
 from base64 import encode
-
+import io
 from publisher import publish_forever
 from xml_json_yaml_convert.converter import Converter
 MLs = ["pyDict", "xml", "json", "yaml"]
@@ -52,14 +44,15 @@ def sendJSONToRabbit(file):
 
 
 @router.post('/')
-def upload_file(
+async def upload_file(
         file: UploadFile
 ):
     with open(f'{file.filename}', "wb") as buffer:
         shutil.copyfileobj(file.file, buffer)
     shutil.move(file.filename, "uploads/" + "file.xml")
     data = open("./uploads/file.xml", 'r', encoding='utf-8')
-    sendJSONToRabbit(data)
+    sendJSONToRabbit(data.read())
+        
 
 app = FastAPI()
 
