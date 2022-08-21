@@ -51,4 +51,4 @@ TODO
 ## Обратная связь
 
 
-![Image Text](https://github.com/elkopass/AGORAHACK/img/мем.jpeg)
+![meme](https://github.com/elkopass/AGORAHACK/img/meme.jpeg)
